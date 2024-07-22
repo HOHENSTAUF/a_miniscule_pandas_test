@@ -3,6 +3,44 @@ import pandas as pd #add
 import matplotlib.pyplot as plt
 import json
 
+
+
+# Number of variables wanted
+num_variables = 16
+[
+    "mean",
+    "max",
+    "min",
+    "floor_mean",
+    "floor_max",
+    "floor_min",
+    "ceiling_mean",
+]
+
+# Initialize the list that will contains our variable parameters
+columns = []
+means = []
+stds = []
+
+# Generate random data for each variable
+for i in range(num_variables):
+    
+    # Assign a name for each variable
+    column_name = f"Variable_{i+1}" # Variable_1, Variable_2, etc
+    columns.append(column_name)
+    
+    # Generate random mean and standard deviation for each variable
+    mean = np.random.uniform(0, 100)
+    std = np.random.uniform(5, 100)
+    means.append(mean)
+    stds.append(std)
+    
+# Generate random data for the DataFrame
+data = np.random.normal(loc=means, scale=stds, size=(1000, num_variables))
+
+# Create the DataFrame
+df = pd.DataFrame(data, columns=columns)
+
 json_string = '{"name":"Rupert", "age": 25, "desig":"developer"}' #here will be pandas file instead
 
 #class plot_drawer
@@ -34,9 +72,10 @@ categories = df['gt_corners'].unique() #добавить категории по
 
 
 # Create a figure and 16 subplots (one for each category)
+#fig = fig.figure
 fig, axs = plt.subplots(9, 4, figsize=(8, 8))
 fig.suptitle('Histograms for Each Deviation by corner number', fontsize=16)
-fig = fig.figure
+
 
 # Flatten the axs array to make it easier to iterate over
 # axs = axs.flatten()
@@ -47,7 +86,7 @@ fig = fig.figure
 # Iterate over each category and plot the histogram
 for i, category in enumerate(categories):
     category_data = df[df['gt_corners'] == category]['mean']
-    axs[i].hist(category_data, bins=15, alpha=0.7, edgecolor="black", color=colors[i])
+    axs[i].hist(category_data, bins=15, alpha=0.7, edgecolor="black", color=colors[i]) #axs[i] is a numplot and not a df thing
     axs[i].set_title(category, fontsize = 7)
     axs[i].set_xlabel('Value', fontsize = 7)
     axs[i].set_ylabel('Frequency', fontsize = 7)
