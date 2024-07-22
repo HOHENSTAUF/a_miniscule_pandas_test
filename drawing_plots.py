@@ -8,6 +8,8 @@ with open('.\data\data.json', 'r') as f:
     data = json.load(f)
 df = pd.DataFrame(data)
 
+
+
 columns = df['gt_corners'].unique()
 
 rows = [
@@ -27,9 +29,12 @@ rows = [
 # filtered_df = df[df["gt_corners"].isin([columns[j]])]
 # filtered_df.hist(column=rows[i])
 
+
+
 for iteration in columns: 
     filtered_df = df[df["gt_corners"].isin([iteration])].filter(items=rows)
     filtered_df.hist()
+    # plt.figure(figsize=(10,5))
     plt.show()
 
 # i=0
