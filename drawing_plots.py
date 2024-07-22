@@ -27,8 +27,10 @@ rows = [
 # filtered_df = df[df["gt_corners"].isin([columns[j]])]
 # filtered_df.hist(column=rows[i])
 
-filtered_df = df[df["gt_corners"].isin([columns[3]])].filter(items=rows)
-filtered_df.hist()
+for iteration in columns: 
+    filtered_df = df[df["gt_corners"].isin([iteration])].filter(items=rows)
+    filtered_df.hist()
+    plt.show()
 
 # i=0
 # j=0
@@ -40,4 +42,3 @@ filtered_df.hist()
 
 
 
-plt.show()
