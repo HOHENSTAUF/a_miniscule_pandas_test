@@ -20,11 +20,24 @@ rows = [
     "ceiling_mean",
     "ceiling_max",
     "ceiling_min",
-]
+] 
 
-i=0
-j = 2
+#figure, axis = plt.subplots(len(columns), len(rows)) 
 
-filtered_df = df[df["gt_corners"].isin([columns[j]])]
-filtered_df.hist(column=rows[i])
+# filtered_df = df[df["gt_corners"].isin([columns[j]])]
+# filtered_df.hist(column=rows[i])
+
+filtered_df = df[df["gt_corners"].isin([columns[3]])].filter(items=rows)
+filtered_df.hist()
+
+# i=0
+# j=0
+
+# for i in range(0, len(columns)):
+#     for j in range(0, len(rows)):
+#         axis[i, j].hist(df[df["gt_corners"].isin([columns[j]])])
+#         axis[i, j].set_title(columns[i] + rows[j]) 
+
+
+
 plt.show()
