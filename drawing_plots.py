@@ -47,21 +47,21 @@ filtered_df = df[df["gt_corners"].isin([columns[0]])].filter(items=rows)
 fig, axs = plt.subplots(3, 3, layout="constrained")
 fig.suptitle('deviation histograms for corners = ' + str(columns[0]) + '\n',
           fontweight = "bold")
-fig.set_size_inches(18.5, 10.5)
+fig.set_size_inches(13, 10)
 
-# axs.set_xlabel('Deviation value')
-# axs.set_ylabel('Frequency')
+fig.supxlabel('Deviation value')
+fig.supylabel('Frequency')
 
-fig.text(0.5, 0.04, 'Deviation value', ha='center', va='center')
-fig.text(0.06, 0.5, 'Frequency', ha='center', va='center', rotation='vertical')
+# fig.text(0.5, 0.04, 'Deviation value', ha='center', va='center')
+# fig.text(0.06, 0.5, 'Frequency', ha='center', va='center', rotation='vertical')
 
 
 for i in range(3):
     for j in range(3):
-       axs[i, j].hist(filtered_df[rows[3*i+j]])
+       axs[i, j].hist(filtered_df[rows[3*i+j]], bins=25)
        axs[i, j].set_title('\n\n'+ str(rows[3*i+j]), fontfamily = "serif" , loc = "left" , fontsize = "medium")
        
-plt.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.1)
+
 
 # axs[0, 0].hist(filtered_df[rows[2]])
 # axs[0, 0].set_title('A single plot')
