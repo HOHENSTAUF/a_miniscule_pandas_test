@@ -68,5 +68,5 @@ class drawing_plots:
 
 #print(drawing_plots.draw_plots())
 
-df = pd.read_json("./data/deviations.json")
-drawing_plots.draw_plots(df)
+# df = pd.read_json("./data/deviations.json")
+# drawing_plots.draw_plots(df)
